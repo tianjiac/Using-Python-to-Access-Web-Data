@@ -1,0 +1,21 @@
+# Access-Web-Data-with-Python
+The program will prompt for a URL, read the XML data from that URL using urllib,
+and then parse and extract the comment counts from the XML data, compute the sum of the numbers in the file.
+The project came from *Using Python to Access Web Data* on Coursera.
+
+
+import urllib
+from BeautifulSoup import *
+import xml.etree.ElementTree as ET
+
+url = raw_input('Enter your url:')
+xml = urllib.urlopen(url).read()
+
+tree = ET.fromstring(xml)
+lst = tree.findall('.//count')
+sum = 0
+
+for item in lst:
+	sum += int(item.text)
+
+print sum
