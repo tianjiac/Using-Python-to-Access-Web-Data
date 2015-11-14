@@ -1,0 +1,28 @@
+# Access-Web-Data-with-Python
+In this part I wrote a Python program that expands on http://www.pythonlearn.com/code/urllinks.py. 
+The program will use *urllib* to read the HTML from the data files below, 
+extract the href= vaues from the anchor tags, 
+scan for a tag that is in a particular position relative to the first name in the list, 
+follow that link and repeat the process a number of times and report the last name you find.
+
+The exercise came from "Programming and the Web for Beginners" on Coursera.
+
+import urllib
+from BeautifulSoup import *
+
+url = raw_input('Enter your start url:')
+co = raw_input('Enter your count:')
+posi = raw_input('Enter your position:')
+
+for i in range(int(co)):
+	html = urllib.urlopen(url).read()
+	soup = BeautifulSoup(html)
+	tags = soup('a')
+	number = 0
+	for tag in tags:
+		number += 1
+		if number == int(posi):
+			url = tag.get('href')
+			if i == int(co)-1:
+				print tag.contents[0]
+			break
