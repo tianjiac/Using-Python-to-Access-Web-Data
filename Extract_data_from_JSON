@@ -1,5 +1,5 @@
 # Access-Web-Data-with-Python
-# prompt for a URL, read the JSON data from that URL using urllib and 
+# In this program, I use Python to prompt for a URL, read the JSON data from that URL using urllib and 
 # then parse and extract the comment counts from the JSON data, compute the sum of the numbers in the file.
 # The project came from *Using Python to Access Web Data* on Coursera.
 
