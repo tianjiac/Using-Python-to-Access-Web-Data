@@ -1,0 +1,22 @@
+# Access-Web-Data-with-Python
+prompt for a URL, read the JSON data from that URL using urllib and 
+then parse and extract the comment counts from the JSON data, compute the sum of the numbers in the file.
+The project came from *Using Python to Access Web Data* on Coursera.
+
+import json
+import urllib
+
+sum = 0
+url = raw_input("Enter url:")
+if len(url) < 1:
+	print "Invalid URL!"
+else:
+	page = urllib.urlopen(url)
+	print "Retrieving"+url
+	data = page.read()
+	print "Retrieved"+str(len(data))+"characters"
+	data = json.loads(data)
+	data1 = data['comments']
+	for i in range(len(data1)):
+		sum += data1[i]['count']
+	print sum
