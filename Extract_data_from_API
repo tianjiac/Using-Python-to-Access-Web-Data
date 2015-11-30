@@ -1,0 +1,27 @@
+# Access-Web-Data-with-Python
+# In this progrem, I use Python code to prompt for a location, contact a web service 
+# and retrieve JSON for the web service and parse that data, 
+# and retrieve the first place_id from the JSON. 
+# A place ID is a textual identifier that uniquely identifies a place as within Google Maps.
+The project came from *Using Python to Access Web Data* on Coursera.
+
+import json
+import urllib
+
+url = 'http://python-data.dr-chuck.net/geojson?'
+
+location = raw_input("Enter location:")
+if len(location) < 1:
+	print 'Invalid location!'
+else:
+	url = url + urllib.urlencode({'sensor':'false', 'address':location})
+	print 'Retrieving '+url
+	page = urllib.urlopen(url)
+	data = page.read()
+	print "Retrieved "+str(len(data))+" characters"
+
+	try: data = json.loads(data)
+	except: data = None
+
+	if data['status'] == 'OK':
+		print data['results'][0]['place_id']
